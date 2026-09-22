@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MediPlan</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            🩺 MediPlan
+        </div>
+
+        <nav>
+
+            <a href="#" class="nav-item active" data-section="dashboard">
+                🏠 داشبورد
+            </a>
+
+            <a href="#" class="nav-item" data-section="calendar">
+                📅 تقویم
+            </a>
+
+            <a href="#" class="nav-item" data-section="subjects">
+                📚 دروس
+            </a>
+
+            <a href="#" class="nav-item" data-section="cases">
+                🩺 کیس‌های بالینی
+            </a>
+
+            <a href="#" class="nav-item" data-section="review">
+                🔄 مرور هوشمند
+            </a>
+
+            <a href="#" class="nav-item" data-section="stats">
+                📊 آمار
+            </a>
+
+            <a href="#" class="nav-item" data-section="drugs">
+                💊 داروها
+            </a>
+
+            <a href="#" class="nav-item" data-section="settings">
+                ⚙️ تنظیمات
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- Main -->
+    <main class="main-content">
+
+        <!-- Dashboard -->
+        <section id="dashboardSection" class="page-section">
+
+            <header class="dashboard-header">
+
+                <div>
+                    <h1>داشبورد</h1>
+
+                    <p>
+                        برنامه‌ریزی و مدیریت مطالعه پزشکی
+                    </p>
+                </div>
+
+                <div class="header-date">
+                    📅 امروز
+                </div>
+
+            </header>
+
+
+            <!-- Statistics -->
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">📚</span>
+
+                    <div>
+                        <span class="stat-title">
+                            مطالعه امروز
+                        </span>
+
+                        <strong id="todayStudyTime">
+                            ۰ ساعت
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">📅</span>
+
+                    <div>
+                        <span class="stat-title">
+                            برنامه‌های امروز
+                        </span>
+
+                        <strong id="todayPlansCount">
+                            ۰ برنامه
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">🩺</span>
+
+                    <div>
+                        <span class="stat-title">
+                            کیس‌های ثبت‌شده
+                        </span>
+
+                        <strong id="casesCount">
+                            ۰ کیس
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">🔥</span>
+
+                    <div>
+                        <span class="stat-title">
+                            روزهای فعال
+                        </span>
+
+                        <strong id="activeDaysCount">
+                            ۰ روز
+                        </strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Calendar -->
+            <section class="dashboard-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>تقویم مطالعه</h2>
+
+                        <p>
+                            برنامه مطالعه خود را مدیریت کن
+                        </p>
+                    </div>
+
+                    <button
+                        class="primary-button"
+                        id="newPlanButton"
+                        type="button"
+                    >
+                        + برنامه جدید
+                    </button>
+
+                </div>
+
+
+                <div class="calendar-placeholder"></div>
+
+            </section>
+
+        </section>
+
+
+        <!-- Calendar Page -->
+        <section
+            id="calendarSection"
+            class="page-section"
+            style="display:none;"
+        >
+
+            <div class="dashboard-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>تقویم</h2>
+
+                        <p>
+                            مدیریت کامل برنامه‌های مطالعه
+                        </p>
+                    </div>
+
+                    <button
+                        class="primary-button"
+                        id="calendarNewPlanButton"
+                        type="button"
+                    >
+                        + برنامه جدید
+                    </button>
+
+                </div>
+
+                <div class="calendar-placeholder"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Subjects -->
+        <section
+            id="subjectsSection"
+            class="page-section"
+            style="display:none;"
+        >
+
+            <div class="dashboard-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>📚 دروس</h2>
+
+                        <p>
+                            دروس پزشکی برای برنامه‌ریزی مطالعه
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="subjects-grid">
+
+                    <div class="subject-card">❤️ قلب و عروق</div>
+                    <div class="subject-card">🧠 نورولوژی</div>
+                    <div class="subject-card">💊 فارماکولوژی</div>
+                    <div class="subject-card">🔬 پاتولوژی</div>
+                    <div class="subject-card">👶 اطفال</div>
+                    <div class="subject-card">👩‍⚕️ زنان</div>
+                    <div class="subject-card">🔪 جراحی</div>
+                    <div class="subject-card">🫁 ریه</div>
+                    <div class="subject-card">🫘 کلیه</div>
+                    <div class="subject-card">🍽️ گوارش</div>
+                    <div class="subject-card">🦴 روماتولوژی</div>
+                    <div class="subject-card">🩸 خون</div>
+                    <div class="subject-card">🧪 غدد</div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Cases -->
+        <section
+            id="casesSection"
+            class="page-section"
+            style="display:none;"
+        >
+
+            <div class="dashboard-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>🩺 کیس‌های بالینی</h2>
+
+                        <p>
+                            کیس‌های بالینی خودت را ثبت و مرور کن
+                        </p>
+                    </div>
+
+                    <button
+                        class="primary-button"
+                        id="newCaseButton"
+                        type="button"
+                    >
+                        + کیس جدید
+                    </button>
+
+                </div>
+
+
+                <div id="casesContainer">
+
+                    <div class="empty-state">
+
+                        <div class="calendar-icon">
+                            🩺
+                        </div>
+
+                        <h3>
+                            هنوز کیسی ثبت نشده
+                        </h3>
+
+                        <p>
+                            برای شروع روی «کیس جدید» بزن.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Review -->
+        <section
+            id="reviewSection"
+            class="page-section"
+            style="display:none;"
+        >
+
+            <div class="dashboard-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>🔄 مرور هوشمند</h2>
+
+                        <p>
+                            برنامه مرور مطالب مطالعه‌شده
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="empty-state">
+
+                    <div class="calendar-icon">
+                        🔄
+                    </div>
+
+                    <h3>
+                        مرور هوشمند
+                    </h3>
+
+                    <p>
+                        این بخش در مرحله بعد به سیستم مرور متصل می‌شود.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Stats -->
+        <section
+            id="statsSection"
+            class="page-section"
+            style="display:none;"
+        >
+
+            <div class="dashboard-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>📊 آمار مطالعه</h2>
+
+                        <p>
+                            خلاصه‌ای از عملکرد مطالعه
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <span class="stat-icon">📚</span>
+
+                        <div>
+                            <span class="stat-title">
+                                کل زمان مطالعه
+                            </span>
+
+                            <strong id="totalStudyTime">
+                                ۰ ساعت
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <span class="stat-icon">📅</span>
+
+                        <div>
+                            <span class="stat-title">
+                                کل برنامه‌ها
+                            </span>
+
+                            <strong id="totalPlansCount">
+                                ۰
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <span class="stat-icon">✓</span>
+
+                        <div>
+                            <span class="stat-title">
+                                برنامه‌های مطالعه‌شده
+                            </span>
+
+                            <strong id="completedPlansCount">
+                                ۰
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Drugs -->
+        <section
+            id="drugsSection"
+            class="page-section"
+            style="display:none;"
+        >
+
+            <div class="dashboard-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>💊 داروها</h2>
+
+                        <p>
+                            بخش دارویی MediPlan
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="empty-state">
+
+                    <div class="calendar-icon">
+                        💊
+                    </div>
+
+                    <h3>
+                        بانک دارویی
+                    </h3>
+
+                    <p>
+                        این بخش بعداً به بانک داروها متصل می‌شود.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Settings -->
+        <section
+            id="settingsSection"
+            class="page-section"
+            style="display:none;"
+        >
+
+            <div class="dashboard-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>⚙️ تنظیمات</h2>
+
+                        <p>
+                            تنظیمات MediPlan
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="settings-box">
+
+                    <div class="setting-item">
+
+                        <div>
+                            <strong>
+                                نمایش ۲۴ ساعته
+                            </strong>
+
+                            <p>
+                                برنامه روزانه به صورت جدول ۲۴ ساعته نمایش داده شود.
+                            </p>
+                        </div>
+
+                        <input
+                            type="checkbox"
+                            id="schedule24Toggle"
+                            checked
+                        >
+
+                    </div>
+
+
+                    <div class="setting-item">
+
+                        <div>
+                            <strong>
+                                هشدار تداخل برنامه
+                            </strong>
+
+                            <p>
+                                هنگام ثبت برنامه‌های هم‌پوشان هشدار داده شود.
+                            </p>
+                        </div>
+
+                        <input
+                            type="checkbox"
+                            id="overlapWarningToggle"
+                            checked
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        id="saveSettingsButton"
+                        type="button"
+                    >
+                        ✓ ذخیره تنظیمات
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
